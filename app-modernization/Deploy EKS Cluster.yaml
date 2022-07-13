@@ -1,5 +1,5 @@
 ---
-project: MCEC - TMC Register Demo
+project: <CHANGE ME!>
 kind: PIPELINE
 name: Deploy EKS Cluster
 icon: organization,left, is-warning
@@ -9,12 +9,12 @@ input:
   Add_to_Cloud_Assembly: 'Yes'
   Add_to_Code_Stream: 'Yes'
   Add_to_TMC: 'Yes'
-  AWS_EC2_SSH_KEY_PAIR: bohlea-deploy-eks
+  AWS_EC2_SSH_KEY_PAIR: deploy-eks-keys
   AWS_REGION: us-east-2
-  Cluster_Name: bohlea-eks-cluster
+  Cluster_Name: ''
   Node_instance_size: t3.small
   NodeGroup_Name: Standard
-  Project: MCEC - TMC Register Demo
+  Project: ''
 _inputMeta:
   Project:
     description: Provide vRA Project name for k8s endpoints to be attached
