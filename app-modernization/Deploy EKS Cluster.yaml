@@ -1,5 +1,5 @@
 ---
-project: <CHANGE ME!>
+project: "My MCEC Project"
 kind: PIPELINE
 name: Deploy EKS Cluster
 icon: organization,left, is-warning
@@ -10,7 +10,7 @@ input:
   Add_to_Code_Stream: 'Yes'
   Add_to_TMC: 'Yes'
   AWS_EC2_SSH_KEY_PAIR: deploy-eks-keys
-  AWS_REGION: us-east-2
+  AWS_REGION: us-west-2
   Cluster_Name: ''
   Node_instance_size: t3.small
   NodeGroup_Name: Standard
