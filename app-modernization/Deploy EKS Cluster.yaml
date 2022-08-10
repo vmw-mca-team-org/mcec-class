@@ -132,14 +132,14 @@ stages:
                 "description": "Cluster Created From Pipeline",
                 "isRestricted": "",
                 "properties": {
-                    "leMansAgent": "3ca8f31e-fedb-41fd-b3bc-89b77190d24f",
+                    "leMansAgent": "8908996a-fb5f-4811-bd17-fdec88e2dcdf",
                     "kubernetesURL": "${Add EKS Cluster to vRA.Get EKS Cluster details.output.exports.APISERVER}",
                     "authType": "token",
                     "token": "${Add EKS Cluster to vRA.Get EKS Cluster details.output.exports.TOKEN}",
                     "fingerprint": "${Add EKS Cluster to vRA.Get EKS Cluster details.output.exports.FINGERPRINT}"
                 },
                 "type": "k8s",
-                "cloudProxyId": "3ca8f31e-fedb-41fd-b3bc-89b77190d24f",
+                "cloudProxyId": "8908996a-fb5f-4811-bd17-fdec88e2dcdf",
                 "project": "${input.Project}"
             }
       Get vRA Cloud API Token:
