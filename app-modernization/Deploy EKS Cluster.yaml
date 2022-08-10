@@ -14,7 +14,7 @@ input:
   Cluster_Name: ''
   Node_instance_size: t3.small
   NodeGroup_Name: Standard
-  Project: ''
+  Project: 'My MCEC Project'
 _inputMeta:
   Project:
     description: Provide vRA Project name for k8s endpoints to be attached
