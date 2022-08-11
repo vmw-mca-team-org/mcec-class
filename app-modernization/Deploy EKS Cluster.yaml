@@ -1,5 +1,5 @@
 ---
-project: "My MCEC Project"
+project: My MCEC Project
 kind: PIPELINE
 name: Deploy EKS Cluster
 icon: organization,left, is-warning
@@ -14,7 +14,7 @@ input:
   Cluster_Name: ''
   Node_instance_size: t3.small
   NodeGroup_Name: Standard
-  Project: 'My MCEC Project'
+  Project: My MCEC Project
 _inputMeta:
   Project:
     description: Provide vRA Project name for k8s endpoints to be attached
@@ -45,7 +45,7 @@ _inputMeta:
     mandatory: true
 workspace:
   type: DOCKER
-  endpoint: dockerhost
+  endpoint: Docker Host
   image: saintdle/aws-k8s-ci
   registry: ''
   path: ''
@@ -208,11 +208,13 @@ stages:
           - 'aws configure set aws_secret_access_key ${var.eks_aws_secret_access_key} '
           - aws configure set default.region ${input.AWS_REGION}
           - ''
-          - eksctl create cluster -n "${input.Cluster_Name}-"$RANDOM --region "${input.AWS_REGION}" --nodegroup-name
-            "${input.NodeGroup_Name}" --node-type "${input.Node_instance_size}" --managed --ssh-access  --ssh-public-key="${input.AWS_EC2_SSH_KEY_PAIR}"
+          - export CLUSTERNAME="${input.Cluster_Name}-$RANDOM"
+          - ''
+          - eksctl create cluster -n $CLUSTERNAME --region "${input.AWS_REGION}" --nodegroup-name "${input.NodeGroup_Name}"
+            --node-type "${input.Node_instance_size}" --managed --ssh-access  --ssh-public-key="${input.AWS_EC2_SSH_KEY_PAIR}"
             --nodes "3"
-          export: [
-            ]
+          export:
+          - CLUSTERNAME
           artifacts: [
             ]
           process: [
@@ -243,7 +245,8 @@ stages:
           - ''
           - kubectl create -f "${Add EKS to TMC.Create TMC cluster attach task.output.responseBody.cluster.status.installerLink}"
           - ''
-          - currentstatus=$(curl --location --request GET 'https://${var.eks_tmc_url}/v1alpha1/clusters/${input.Cluster_Name}?full_name.managementClusterName=attached&full_name.provisionerName=attached'
+          - currentstatus=$(curl --location --request GET 'https://${var.eks_tmc_url}/v1alpha1/clusters/${Build
+            EKS Cluster.Build EKS Cluster.output.exports.CLUSTERNAME}?full_name.managementClusterName=attached&full_name.provisionerName=attached'
             \
           - '--header ''Authorization: Bearer ${Add EKS to TMC.Get TMC API Token.output.responseBody.access_token}''
             | jq ''.cluster.status.health'' | sed ''s/"//g'' )'
@@ -252,11 +255,14 @@ stages:
           - do
           - '  echo "Waiting for Cluster to Synchronise with TMC"'
           - '  sleep 15'
-          - '  currentstatus=$(curl --location --request GET ''https://${var.eks_tmc_url}/v1alpha1/clusters/${input.Cluster_Name}?full_name.managementClusterName=attached&full_name.provisionerName=attached''
+          - '  currentstatus=$(curl --location --request GET ''https://${var.eks_tmc_url}/v1alpha1/clusters/${Build
+            EKS Cluster.Build EKS Cluster.output.exports.CLUSTERNAME}?full_name.managementClusterName=attached&full_name.provisionerName=attached''
             \'
           - '--header ''Authorization: Bearer ${Add EKS to TMC.Get TMC API Token.output.responseBody.access_token}''
             | jq ''.cluster.status.health'' | sed ''s/"//g'' )'
           - done
+          - ''
+          - ''
           export: [
             ]
           artifacts: [
