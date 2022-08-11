@@ -208,7 +208,7 @@ stages:
           - 'aws configure set aws_secret_access_key ${var.eks_aws_secret_access_key} '
           - aws configure set default.region ${input.AWS_REGION}
           - ''
-          - eksctl create cluster -n "${input.Cluster_Name}" --region "${input.AWS_REGION}" --nodegroup-name
+          - eksctl create cluster -n "${input.Cluster_Name}-"$RANDOM --region "${input.AWS_REGION}" --nodegroup-name
             "${input.NodeGroup_Name}" --node-type "${input.Node_instance_size}" --managed --ssh-access  --ssh-public-key="${input.AWS_EC2_SSH_KEY_PAIR}"
             --nodes "3"
           export: [
