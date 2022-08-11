@@ -236,7 +236,9 @@ stages:
             Accept: application/json
             Content-Type: application/json
             Authorization: Bearer ${Add EKS to TMC.Get TMC API Token.output.responseBody.access_token}
-          payload: '{"cluster":{"fullName":{"managementClusterName":"attached","provisionerName":"attached","name":"${input.Cluster_Name}"},"meta":{},"spec":{"clusterGroupName":"default"}}}'
+          payload: |+
+            {"cluster":{"fullName":{"managementClusterName":"attached","provisionerName":"attached","name":"${Build EKS Cluster.Build EKS Cluster.output.exports.CLUSTERNAME}"},"meta":{},"spec":{"clusterGroupName":"default"}}}
+
       Install TMC to Cluster:
         type: CI
         preCondition: ${input.Add_to_TMC} == "Yes"
