@@ -77,7 +77,7 @@ stages:
             Authorization: Bearer ${Add EKS Cluster to vRA.Get vRA Cloud API Token.output.responseBody.access_token}
           payload: |-
             {
-              "name": "${input.Cluster_Name}",
+              "name": "${Build EKS Cluster.Build EKS Cluster.output.exports.CLUSTERNAME}",
               "description": "Cluster created from Pipeline",
               "address": "${Add EKS Cluster to vRA.Get EKS Cluster details.output.exports.APISERVER}",
               "credentials": {
@@ -128,7 +128,7 @@ stages:
             Authorization: Bearer ${Add EKS Cluster to vRA.Get vRA Cloud API Token.output.responseBody.access_token}
           payload: |-
             {
-                "name": "${input.Cluster_Name}",
+                "name": "${Build EKS Cluster.Build EKS Cluster.output.exports.CLUSTERNAME}",
                 "description": "Cluster Created From Pipeline",
                 "isRestricted": "",
                 "properties": {
