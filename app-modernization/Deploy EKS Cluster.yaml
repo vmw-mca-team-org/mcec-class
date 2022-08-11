@@ -70,7 +70,7 @@ stages:
         preCondition: ${input.Add_to_Cloud_Assembly} == "Yes"
         input:
           action: post
-          url: https://api.mgmt.cloud.vmware.com/cmx/api/resources/k8s/clusters/
+          url: https://sg.api.mgmt.cloud.vmware.com/cmx/api/resources/k8s/clusters/
           headers:
             Accept: application/json
             Content-Type: application/json
@@ -121,7 +121,7 @@ stages:
         preCondition: ${input.Add_to_Code_Stream} == "Yes"
         input:
           action: post
-          url: https://api.mgmt.cloud.vmware.com/codestream/api/endpoints
+          url: https://sg.api.mgmt.cloud.vmware.com/codestream/api/endpoints
           headers:
             Accept: application/json
             Content-Type: application/json
@@ -132,14 +132,13 @@ stages:
                 "description": "Cluster Created From Pipeline",
                 "isRestricted": "",
                 "properties": {
-                    "leMansAgent": "8908996a-fb5f-4811-bd17-fdec88e2dcdf",
+                    "leMansAgent": "default",
                     "kubernetesURL": "${Add EKS Cluster to vRA.Get EKS Cluster details.output.exports.APISERVER}",
                     "authType": "token",
                     "token": "${Add EKS Cluster to vRA.Get EKS Cluster details.output.exports.TOKEN}",
                     "fingerprint": "${Add EKS Cluster to vRA.Get EKS Cluster details.output.exports.FINGERPRINT}"
                 },
                 "type": "k8s",
-                "cloudProxyId": "8908996a-fb5f-4811-bd17-fdec88e2dcdf",
                 "project": "${input.Project}"
             }
       Get vRA Cloud API Token:
