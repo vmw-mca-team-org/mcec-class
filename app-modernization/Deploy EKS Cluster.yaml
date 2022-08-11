@@ -43,6 +43,8 @@ _inputMeta:
   Cluster_Name:
     description: Provide a name for the EKS Cluster
     mandatory: true
+output:
+  EKS_Cluster_Name: ${Build EKS Cluster.Build EKS Cluster.output.exports.CLUSTERNAME}
 workspace:
   type: DOCKER
   endpoint: Docker Host
