@@ -214,7 +214,7 @@ stages:
           - ''
           - eksctl create cluster -n $CLUSTERNAME --region "${input.AWS_REGION}" --nodegroup-name "${input.NodeGroup_Name}"
             --node-type "${input.Node_instance_size}" --managed --ssh-access  --ssh-public-key="${input.AWS_EC2_SSH_KEY_PAIR}"
-            --nodes "3"
+            --nodes "3" --version 1.20
           export:
           - CLUSTERNAME
           artifacts: [
